@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import ElectricBorderCard, { type SocialLink } from "@/components/electric-border-card"
+import ElectricBorderCard, { type SocialLink, type ContactInfo } from "@/components/electric-border-card"
 import ScrollIndicator from "@/components/scroll-indicator"
 
 export default function Home() {
@@ -40,6 +40,12 @@ export default function Home() {
     },
   ]
 
+  const contactInfo: ContactInfo = {
+    phone: "+1234567890",
+    email: "kevin@example.com",
+    location: "San Francisco, CA",
+  }
+
   return (
     <>
       <section
@@ -49,7 +55,13 @@ export default function Home() {
           transform: `translateY(${scrollProgress * -100}px) scale(${1 - scrollProgress * 0.2})`,
         }}
       >
-        <ElectricBorderCard name="Kevin Rajan" title="Founder & CEO" category="Portfolio" socialLinks={socialLinks} />
+        <ElectricBorderCard
+          name="Kevin Rajan"
+          title="Founder & CEO"
+          category="Portfolio"
+          socialLinks={socialLinks}
+          contactInfo={contactInfo}
+        />
       </section>
 
       <section className="portfolio-section section-about">

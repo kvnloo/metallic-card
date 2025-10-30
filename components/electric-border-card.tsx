@@ -11,8 +11,9 @@ export interface SocialLink {
 }
 
 export interface ContactInfo {
-  phone?: string
-  location?: string
+  phone: string
+  email: string
+  location: string
 }
 
 export interface BusinessCardProps {
@@ -171,9 +172,16 @@ export default function ElectricBorderCard({
               <p className="description">{title}</p>
 
               {contactInfo && (
-                <div className="contact-info">
-                  {contactInfo.phone && <p className="contact-item">📞 {contactInfo.phone}</p>}
-                  {contactInfo.location && <p className="contact-item">📍 {contactInfo.location}</p>}
+                <div className="contact-buttons">
+                  <a href={`tel:${contactInfo.phone}`} className="social-button nerd-icon" aria-label="Phone"></a>
+                  <a href={`mailto:${contactInfo.email}`} className="social-button nerd-icon" aria-label="Email"></a>
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contactInfo.location)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-button nerd-icon"
+                    aria-label="Location"
+                  ></a>
                 </div>
               )}
 
