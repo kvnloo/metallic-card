@@ -170,8 +170,7 @@ export default function ElectricBorderCard({
 
           <div className="content-container">
             <div className="content-top">
-              <div className="scrollbar-glass">{category}</div>
-              <p className="title">{name}</p>
+              <p className="title-large">{name}</p>
             </div>
 
             <hr className="divider" />
