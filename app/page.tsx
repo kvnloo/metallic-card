@@ -37,14 +37,14 @@ export default function Home() {
       type: "social",
       label: "Behance",
       value: "https://behance.net/kevinsrajan",
-      icon: "󰌼",
+      icon: "",
       ariaLabel: "Visit Behance portfolio",
     },
     {
       type: "social",
       label: "GitHub",
       value: "https://github.com/kvnloo",
-      icon: "󰊢",
+      icon: "",
       ariaLabel: "Visit GitHub profile",
     },
     {

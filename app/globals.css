@@ -493,3 +493,8 @@ body {
   /* Added uppercase transformation */
   text-transform: uppercase;
 }
+
+/* Added Josefin Sans font styling for company name */
+.description strong {
+  font-family: var(--font-josefin), sans-serif;
+}
