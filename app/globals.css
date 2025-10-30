@@ -446,16 +446,6 @@ body {
   transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Added Nerd Font icon styling */
-.nerd-icon {
-  font-size: 20px;
-  line-height: 1;
-  font-family: "Symbols Nerd Font", "Symbols Nerd Font Mono", monospace, system-ui, -apple-system, sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 /* Typography */
 .scrollbar-glass {
   font-family: var(--font-josefin), sans-serif;
