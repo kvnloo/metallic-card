@@ -11,13 +11,22 @@ export default function Home() {
     const handleScroll = () => {
       const scrollPosition = window.scrollY
       const windowHeight = window.innerHeight
+
+      // Calculate progress from 0 to 1 based on scroll position
       const progress = Math.min(scrollPosition / windowHeight, 1)
       setScrollProgress(progress)
     }
 
-    window.addEventListener("scroll", handleScroll)
+    // Use passive listener for better scroll performance
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  const scale = 1 - scrollProgress * 0.7
+
+  const opacity = 1 - scrollProgress
+
+  const translateY = scrollProgress * -150
 
   const contactLinks: ContactLink[] = [
     {
@@ -69,8 +78,9 @@ export default function Home() {
       <section
         className="portfolio-section"
         style={{
-          opacity: 1 - scrollProgress,
-          transform: `translateY(${scrollProgress * -100}px) scale(${1 - scrollProgress * 0.2})`,
+          opacity: opacity,
+          transform: `translateY(${translateY}px) scale(${scale})`,
+          willChange: scrollProgress > 0 && scrollProgress < 1 ? "transform, opacity" : "auto",
         }}
       >
         <ElectricBorderCard name="Kevin Rajan" title="Founder & CEO" category="Portfolio" contactLinks={contactLinks} />

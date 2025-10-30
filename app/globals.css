@@ -157,13 +157,15 @@ body {
   perspective: 1500px;
   perspective-origin: center center;
   position: relative;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  /* Removed transition to allow inline style control for smoother scroll-based animation */
 }
 
 .portfolio-section:first-child {
   position: sticky;
   top: 0;
   z-index: 1;
+  /* Added transform-origin for better scale animation */
+  transform-origin: center center;
 }
 
 /* Added section content styling */
@@ -204,14 +206,13 @@ body {
 
 /* 3D card wrapper for tilt effect */
 .card-3d-wrapper {
-  /* Removed static transform and hover effect for dynamic mouse-based animation */
   transform-style: preserve-3d;
-  /* Smooth transition handled via inline style */
   cursor: pointer;
+  /* Added backface-visibility for better 3D performance */
+  backface-visibility: hidden;
+  /* Added transform-origin for consistent scaling */
+  transform-origin: center center;
 }
-
-/* Removed static hover effect */
-/* .card-3d-wrapper:hover { ... } */
 
 /* Card container */
 .card-container {
@@ -220,10 +221,11 @@ body {
   position: relative;
   background: linear-gradient(-30deg, var(--gradient-color), transparent, var(--gradient-color)),
     linear-gradient(to bottom, var(--color-neutral-900), var(--color-neutral-900));
-  /* Enhanced shadow for more depth */
   box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.8), 0 30px 60px -30px rgba(192, 192, 192, 0.3), 0 0 80px
     rgba(192, 192, 192, 0.1);
   transition: box-shadow 0.3s ease;
+  /* Added will-change hint for better performance during scroll */
+  will-change: transform;
 }
 
 /* Main container */
