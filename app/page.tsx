@@ -50,14 +50,14 @@ export default function Home() {
     {
       type: "phone",
       label: "Phone",
-      value: "0000000",
+      value: "6306992872",
       icon: "󰏲",
       ariaLabel: "Call phone number",
     },
     {
       type: "email",
       label: "Email",
-      value: "test@test.com",
+      value: "kevinsrajan@gmail.com",
       icon: "󰇰",
       ariaLabel: "Send email",
     },
