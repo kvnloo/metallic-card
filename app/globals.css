@@ -142,9 +142,24 @@ body {
   font-family: system-ui, -apple-system, sans-serif;
   background-color: oklch(0.145 0 0);
   color: oklch(0.985 0 0);
-  /* Removed overflow hidden to enable scrolling */
+  /* Enable scrolling for scroll-based animation */
   overflow-x: hidden;
   overflow-y: auto;
+  /* Add min-height to enable scrolling */
+  min-height: 200vh;
+}
+
+/* Restored v12 single centered container layout */
+.portfolio-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100vw;
+  perspective: 1500px;
+  perspective-origin: center center;
+  position: relative;
+  transform-origin: center center;
 }
 
 /* Updated portfolio container for scroll sections */

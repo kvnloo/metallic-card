@@ -12,7 +12,6 @@ export default function Home() {
       const scrollPosition = window.scrollY
       const windowHeight = window.innerHeight
 
-      // Calculate progress from 0 to 1 based on scroll position
       const progress = Math.min(scrollPosition / windowHeight, 1)
       setScrollProgress(progress)
     }
@@ -23,9 +22,7 @@ export default function Home() {
   }, [])
 
   const scale = 1 - scrollProgress * 0.7
-
   const opacity = 1 - scrollProgress
-
   const translateY = scrollProgress * -150
 
   const contactLinks: ContactLink[] = [
@@ -75,8 +72,8 @@ export default function Home() {
 
   return (
     <>
-      <section
-        className="portfolio-section"
+      <main
+        className="portfolio-container"
         style={{
           opacity: opacity,
           transform: `translateY(${translateY}px) scale(${scale})`,
@@ -84,21 +81,7 @@ export default function Home() {
         }}
       >
         <ElectricBorderCard name="Kevin Rajan" title="Founder & CEO" category="Portfolio" contactLinks={contactLinks} />
-      </section>
-
-      <section className="portfolio-section section-about">
-        <div className="section-content">
-          <h2 className="section-title">About</h2>
-          <p className="section-text">Building innovative solutions for the modern web.</p>
-        </div>
-      </section>
-
-      <section className="portfolio-section section-work">
-        <div className="section-content">
-          <h2 className="section-title">Work</h2>
-          <p className="section-text">Explore my latest projects and collaborations.</p>
-        </div>
-      </section>
+      </main>
 
       <ScrollIndicator />
     </>
