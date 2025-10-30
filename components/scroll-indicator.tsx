@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 
 export default function ScrollIndicator() {
   const [activeSection, setActiveSection] = useState(0)
-  const sections = ["Home", "About", "Work"]
+  const sections = ["Home"]
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,7 +17,7 @@ export default function ScrollIndicator() {
     window.addEventListener("scroll", handleScroll)
     handleScroll() // Initial check
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [sections.length])
+  }, [])
 
   const scrollToSection = (index: number) => {
     window.scrollTo({

@@ -14,16 +14,10 @@ export interface ContactLink {
 export interface BusinessCardProps {
   name: string
   title: string
-  category?: string
   contactLinks?: ContactLink[]
 }
 
-export default function ElectricBorderCard({
-  name,
-  title,
-  category = "Portfolio",
-  contactLinks = [],
-}: BusinessCardProps) {
+export default function ElectricBorderCard({ name, title, contactLinks = [] }: BusinessCardProps) {
   const [rotateX, setRotateX] = useState(15)
   const [rotateY, setRotateY] = useState(-20)
   const [rotateZ, setRotateZ] = useState(5)
