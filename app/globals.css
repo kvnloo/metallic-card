@@ -484,7 +484,12 @@ body {
   text-transform: uppercase;
 }
 
-/* Added Josefin Sans font styling for company name */
+/* Added Josefin Sans font styling for role/title description */
+.description {
+  font-family: var(--font-josefin), sans-serif;
+}
+
+/* Keep company name bold and with Josefin Sans */
 .description strong {
   font-family: var(--font-josefin), sans-serif;
 }
