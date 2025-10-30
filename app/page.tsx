@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import ElectricBorderCard, { type SocialLink, type ContactInfo } from "@/components/electric-border-card"
+import ElectricBorderCard, { type ContactLink } from "@/components/electric-border-card"
 import ScrollIndicator from "@/components/scroll-indicator"
 
 export default function Home() {
@@ -19,32 +19,50 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const socialLinks: SocialLink[] = [
+  const contactLinks: ContactLink[] = [
     {
-      platform: "linkedin",
-      url: "https://linkedin.com/in/kevinsrajan",
+      type: "social",
+      label: "LinkedIn",
+      value: "https://linkedin.com/in/kevinsrajan",
       icon: "󰌻",
-      ariaLabel: "LinkedIn",
+      ariaLabel: "Visit LinkedIn profile",
     },
     {
-      platform: "behance",
-      url: "https://behance.net/kevinsrajan",
+      type: "social",
+      label: "Behance",
+      value: "https://behance.net/kevinsrajan",
       icon: "󰌼",
-      ariaLabel: "Behance",
+      ariaLabel: "Visit Behance portfolio",
     },
     {
-      platform: "github",
-      url: "https://github.com/kvnloo",
+      type: "social",
+      label: "GitHub",
+      value: "https://github.com/kvnloo",
       icon: "󰊢",
-      ariaLabel: "GitHub",
+      ariaLabel: "Visit GitHub profile",
+    },
+    {
+      type: "phone",
+      label: "Phone",
+      value: "+1234567890",
+      icon: "󰏲",
+      ariaLabel: "Call phone number",
+    },
+    {
+      type: "email",
+      label: "Email",
+      value: "kevin@example.com",
+      icon: "󰇰",
+      ariaLabel: "Send email",
+    },
+    {
+      type: "location",
+      label: "Location",
+      value: "San Francisco, CA",
+      icon: "󰍎",
+      ariaLabel: "View location on map",
     },
   ]
-
-  const contactInfo: ContactInfo = {
-    phone: "+1234567890",
-    email: "kevin@example.com",
-    location: "San Francisco, CA",
-  }
 
   return (
     <>
@@ -55,13 +73,7 @@ export default function Home() {
           transform: `translateY(${scrollProgress * -100}px) scale(${1 - scrollProgress * 0.2})`,
         }}
       >
-        <ElectricBorderCard
-          name="Kevin Rajan"
-          title="Founder & CEO"
-          category="Portfolio"
-          socialLinks={socialLinks}
-          contactInfo={contactInfo}
-        />
+        <ElectricBorderCard name="Kevin Rajan" title="Founder & CEO" category="Portfolio" contactLinks={contactLinks} />
       </section>
 
       <section className="portfolio-section section-about">

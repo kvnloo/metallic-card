@@ -429,14 +429,17 @@ body {
   -webkit-mask-image: linear-gradient(to right, transparent, black, transparent);
 }
 
-/* Added social links styling */
-.social-links {
+/* Updated contact links to display in a single horizontal row */
+.contact-links-row {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   margin-top: 24px;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.social-button {
+.contact-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -451,14 +454,14 @@ body {
   text-decoration: none;
 }
 
-.social-button:hover {
+.contact-button:hover {
   background: radial-gradient(47.2% 50% at 50.39% 88.37%, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 100%),
     rgba(255, 255, 255, 0.08);
   transform: translateY(-2px);
   color: rgba(255, 255, 255, 1);
 }
 
-.social-button::before {
+.contact-button::before {
   content: "";
   position: absolute;
   top: 0;
@@ -548,11 +551,11 @@ body {
     right: 24px;
   }
 
-  .social-links {
+  .contact-links-row {
     gap: 8px;
   }
 
-  .social-button {
+  .contact-button {
     width: 36px;
     height: 36px;
   }
@@ -586,21 +589,4 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-/* Added contact info styling for optional phone/location display */
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 16px;
-  margin-bottom: 8px;
-}
-
-.contact-item {
-  font-size: 14px;
-  opacity: 0.7;
-  display: flex;
-  align-items: center;
-  gap: 8px;
 }

@@ -3,33 +3,26 @@
 import type React from "react"
 import { useState, useRef } from "react"
 
-export interface SocialLink {
-  platform: string
-  url: string
-  icon: string
+export interface ContactLink {
+  type: "social" | "phone" | "email" | "location"
+  label: string
+  value: string // URL for social, phone number, email, or location text
+  icon: string // Nerd Font icon character
   ariaLabel: string
-}
-
-export interface ContactInfo {
-  phone: string
-  email: string
-  location: string
 }
 
 export interface BusinessCardProps {
   name: string
   title: string
   category?: string
-  socialLinks?: SocialLink[]
-  contactInfo?: ContactInfo
+  contactLinks?: ContactLink[]
 }
 
 export default function ElectricBorderCard({
   name,
   title,
   category = "Portfolio",
-  socialLinks = [],
-  contactInfo,
+  contactLinks = [],
 }: BusinessCardProps) {
   const [rotateX, setRotateX] = useState(15)
   const [rotateY, setRotateY] = useState(-20)
@@ -81,6 +74,21 @@ export default function ElectricBorderCard({
     setRotateZ(5)
     setGlowX(50)
     setGlowY(50)
+  }
+
+  const getHref = (link: ContactLink): string => {
+    switch (link.type) {
+      case "social":
+        return link.value
+      case "phone":
+        return `tel:${link.value}`
+      case "email":
+        return `mailto:${link.value}`
+      case "location":
+        return `https://maps.google.com/?q=${encodeURIComponent(link.value)}`
+      default:
+        return link.value
+    }
   }
 
   return (
@@ -171,30 +179,17 @@ export default function ElectricBorderCard({
             <div className="content-bottom">
               <p className="description">{title}</p>
 
-              {contactInfo && (
-                <div className="contact-buttons">
-                  <a href={`tel:${contactInfo.phone}`} className="social-button nerd-icon" aria-label="Phone"></a>
-                  <a href={`mailto:${contactInfo.email}`} className="social-button nerd-icon" aria-label="Email"></a>
-                  <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contactInfo.location)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="social-button nerd-icon"
-                    aria-label="Location"
-                  ></a>
-                </div>
-              )}
-
-              {socialLinks.length > 0 && (
-                <div className="social-links">
-                  {socialLinks.map((link, index) => (
+              {contactLinks.length > 0 && (
+                <div className="contact-links-row">
+                  {contactLinks.map((link, index) => (
                     <a
                       key={index}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="social-button nerd-icon"
+                      href={getHref(link)}
+                      target={link.type === "social" ? "_blank" : undefined}
+                      rel={link.type === "social" ? "noopener noreferrer" : undefined}
+                      className="contact-button nerd-icon"
                       aria-label={link.ariaLabel}
+                      title={link.label}
                     >
                       {link.icon}
                     </a>
