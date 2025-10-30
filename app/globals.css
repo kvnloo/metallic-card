@@ -379,8 +379,11 @@ body {
   display: flex;
   flex-direction: column;
   padding: 48px;
-  padding-bottom: 16px;
+  /* Reduced bottom padding to bring name closer to divider */
+  padding-bottom: 8px;
   height: 100%;
+  /* Added justify-content to push name to bottom of top section */
+  justify-content: flex-end;
   /* Allow pointer events on content */
   pointer-events: auto;
 }
@@ -389,7 +392,8 @@ body {
   display: flex;
   flex-direction: column;
   padding: 48px;
-  padding-top: 16px;
+  /* Reduced top padding to bring title closer to divider */
+  padding-top: 8px;
   /* Allow pointer events on content */
   pointer-events: auto;
 }
@@ -485,4 +489,6 @@ body {
   font-family: var(--font-josefin), sans-serif;
   margin-top: 0;
   margin-bottom: 12px;
+  /* Added uppercase transformation */
+  text-transform: uppercase;
 }
