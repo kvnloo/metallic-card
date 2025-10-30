@@ -479,3 +479,10 @@ body {
   margin-bottom: 8px;
   margin-top: 32px;
 }
+
+/* Added Josefin Sans font styling for name */
+.title-name {
+  font-family: var(--font-josefin), sans-serif;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
