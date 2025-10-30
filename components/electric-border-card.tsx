@@ -2,13 +2,24 @@
 
 import type React from "react"
 import { useState, useRef } from "react"
+import { Linkedin, Github, Phone, Mail, MapPin, Palette, type LucideIcon } from "lucide-react"
 
 export interface ContactLink {
   type: "social" | "phone" | "email" | "location"
   label: string
   value: string // URL for social, phone number, email, or location text
-  icon: string // Nerd Font icon character
+  icon: string // Icon name (e.g., "linkedin", "github", "phone", "mail", "map-pin", "behance")
   ariaLabel: string
+}
+
+// Icon mapping
+const iconMap: Record<string, LucideIcon> = {
+  linkedin: Linkedin,
+  github: Github,
+  phone: Phone,
+  mail: Mail,
+  "map-pin": MapPin,
+  behance: Palette, // Lucide doesn't have Behance, using Palette as creative portfolio icon
 }
 
 export interface BusinessCardProps {
@@ -188,19 +199,22 @@ export default function ElectricBorderCard({ name, title, contactLinks = [] }: B
 
               {contactLinks.length > 0 && (
                 <div className="contact-links-row">
-                  {contactLinks.map((link, index) => (
-                    <a
-                      key={index}
-                      href={getHref(link)}
-                      target={link.type === "social" ? "_blank" : undefined}
-                      rel={link.type === "social" ? "noopener noreferrer" : undefined}
-                      className="contact-button nerd-icon"
-                      aria-label={link.ariaLabel}
-                      title={link.label}
-                    >
-                      {link.icon}
-                    </a>
-                  ))}
+                  {contactLinks.map((link, index) => {
+                    const IconComponent = iconMap[link.icon]
+                    return (
+                      <a
+                        key={index}
+                        href={getHref(link)}
+                        target={link.type === "social" ? "_blank" : undefined}
+                        rel={link.type === "social" ? "noopener noreferrer" : undefined}
+                        className="contact-button"
+                        aria-label={link.ariaLabel}
+                        title={link.label}
+                      >
+                        {IconComponent ? <IconComponent size={20} /> : null}
+                      </a>
+                    )
+                  })}
                 </div>
               )}
             </div>
