@@ -169,12 +169,13 @@ export default function ElectricBorderCard({
           ></div>
 
           <div className="content-container">
-            <div className="content-top"></div>
+            <div className="content-top">
+              <p className="title-large title-name">{name}</p>
+            </div>
 
             <hr className="divider" />
 
             <div className="content-bottom">
-              <p className="title-large title-name">{name}</p>
               <p className="description">{title}</p>
 
               {contactLinks.length > 0 && (
