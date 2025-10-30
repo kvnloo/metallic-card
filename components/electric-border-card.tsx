@@ -13,7 +13,7 @@ export interface ContactLink {
 
 export interface BusinessCardProps {
   name: string
-  title: string
+  title: string | { role: string; company?: string }
   contactLinks?: ContactLink[]
 }
 
@@ -170,7 +170,21 @@ export default function ElectricBorderCard({ name, title, contactLinks = [] }: B
             <hr className="divider" />
 
             <div className="content-bottom">
-              <p className="description">{title}</p>
+              <p className="description">
+                {typeof title === 'string' ? (
+                  title
+                ) : (
+                  <>
+                    {title.role}
+                    {title.company && (
+                      <>
+                        {' | '}
+                        <strong>{title.company}</strong>
+                      </>
+                    )}
+                  </>
+                )}
+              </p>
 
               {contactLinks.length > 0 && (
                 <div className="contact-links-row">

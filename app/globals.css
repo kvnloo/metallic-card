@@ -458,6 +458,7 @@ body {
 
 /* Typography */
 .scrollbar-glass {
+  font-family: var(--font-josefin), sans-serif;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.1em;
