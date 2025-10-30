@@ -58,7 +58,7 @@ export default function Home() {
       type: "email",
       label: "Email",
       value: "kevinsrajan@gmail.com",
-      icon: "󰴃",
+      icon: "󰶈",
       ariaLabel: "Send email",
     },
     {
