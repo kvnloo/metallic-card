@@ -300,6 +300,8 @@ body {
   transform: scale(1.1);
   filter: blur(16px);
   background: linear-gradient(-30deg, white, transparent 30%, transparent 70%, white);
+  /* Added pointer-events: none to prevent blocking clicks */
+  pointer-events: none;
 }
 
 .overlay-2 {
@@ -316,6 +318,8 @@ body {
   transform: scale(1.1);
   filter: blur(16px);
   background: linear-gradient(-30deg, white, transparent 30%, transparent 70%, white);
+  /* Added pointer-events: none to prevent blocking clicks */
+  pointer-events: none;
 }
 
 /* Background glow */
@@ -333,6 +337,8 @@ body {
   opacity: 0.3;
   z-index: -1;
   background: linear-gradient(-30deg, var(--silver-bright), transparent, var(--electric-border-color));
+  /* Added pointer-events: none to prevent blocking clicks */
+  pointer-events: none;
 }
 
 /* Content container */
@@ -346,6 +352,9 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+  /* Added z-index to ensure content is above overlay effects */
+  z-index: 20;
+  pointer-events: none;
 }
 
 /* Content sections */
@@ -355,6 +364,8 @@ body {
   padding: 48px;
   padding-bottom: 16px;
   height: 100%;
+  /* Allow pointer events on content */
+  pointer-events: auto;
 }
 
 .content-bottom {
@@ -362,71 +373,8 @@ body {
   flex-direction: column;
   padding: 48px;
   padding-top: 16px;
-}
-
-/* Scrollbar glass component */
-.scrollbar-glass {
-  background: radial-gradient(47.2% 50% at 50.39% 88.37%, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%),
-    rgba(255, 255, 255, 0.04);
-  position: relative;
-  transition: background 0.3s ease;
-  border-radius: 14px;
-  width: fit-content;
-  height: fit-content;
-  padding: 8px 16px;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.scrollbar-glass:hover {
-  background: radial-gradient(47.2% 50% at 50.39% 88.37%, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%),
-    rgba(255, 255, 255, 0.08);
-}
-
-.scrollbar-glass::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 1px;
-  background: linear-gradient(
-    150deg,
-    rgba(255, 255, 255, 0.48) 16.73%,
-    rgba(255, 255, 255, 0.08) 30.2%,
-    rgba(255, 255, 255, 0.08) 68.2%,
-    rgba(255, 255, 255, 0.6) 81.89%
-  );
-  border-radius: inherit;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: xor;
-  -webkit-mask-composite: xor;
-  pointer-events: none;
-}
-
-/* Typography */
-.title {
-  font-size: 36px;
-  font-weight: 500;
-  margin-top: auto;
-}
-
-.description {
-  opacity: 0.5;
-}
-
-/* Divider */
-.divider {
-  margin-top: auto;
-  border: none;
-  height: 1px;
-  background-color: currentColor;
-  opacity: 0.1;
-  mask-image: linear-gradient(to right, transparent, black, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black, transparent);
+  /* Allow pointer events on content */
+  pointer-events: auto;
 }
 
 /* Updated contact links to display in a single horizontal row */
@@ -437,6 +385,9 @@ body {
   margin-top: 24px;
   justify-content: flex-start;
   align-items: center;
+  /* Ensure buttons are above all overlay effects */
+  position: relative;
+  z-index: 30;
 }
 
 .contact-button {
@@ -452,113 +403,10 @@ body {
   transition: all 0.3s ease;
   position: relative;
   text-decoration: none;
-}
-
-.contact-button:hover {
-  background: radial-gradient(47.2% 50% at 50.39% 88.37%, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 100%),
-    rgba(255, 255, 255, 0.08);
-  transform: translateY(-2px);
-  color: rgba(255, 255, 255, 1);
-}
-
-.contact-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 1px;
-  background: linear-gradient(
-    150deg,
-    rgba(255, 255, 255, 0.3) 16.73%,
-    rgba(255, 255, 255, 0.05) 30.2%,
-    rgba(255, 255, 255, 0.05) 68.2%,
-    rgba(255, 255, 255, 0.4) 81.89%
-  );
-  border-radius: inherit;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: xor;
-  -webkit-mask-composite: xor;
-  pointer-events: none;
-}
-
-/* Updated scroll indicator with better positioning */
-.scroll-indicator {
-  position: fixed;
-  right: 48px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  z-index: 1000;
-}
-
-.scroll-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
-  border: 2px solid rgba(255, 255, 255, 0.25);
+  /* Ensure buttons are clickable and above all effects */
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  padding: 0;
-  position: relative;
-}
-
-.scroll-dot:hover {
-  background: rgba(255, 255, 255, 0.35);
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: scale(1.3);
-}
-
-.scroll-dot.active {
-  background: rgba(192, 192, 192, 0.95);
-  border-color: rgba(192, 192, 192, 1);
-  box-shadow: 0 0 16px rgba(192, 192, 192, 0.7), 0 0 32px rgba(192, 192, 192, 0.3);
-  transform: scale(1.4);
-}
-
-.scroll-dot.active::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 2px solid rgba(192, 192, 192, 0.4);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(1.6);
-  }
-}
-
-/* Responsive adjustments for scroll indicator */
-@media (max-width: 768px) {
-  .scroll-indicator {
-    right: 24px;
-  }
-
-  .contact-links-row {
-    gap: 8px;
-  }
-
-  .contact-button {
-    width: 36px;
-    height: 36px;
-  }
+  pointer-events: auto;
+  z-index: 1;
 }
 
 /* Added mouse spotlight effect */
@@ -571,6 +419,7 @@ body {
   right: 0;
   bottom: 0;
   border-radius: 24px;
+  /* Added pointer-events: none to allow clicks through to buttons */
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s ease;
