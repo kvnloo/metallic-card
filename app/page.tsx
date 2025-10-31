@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import ElectricBorderCard, { type ContactLink } from "@/components/electric-border-card"
 import ScrollIndicator from "@/components/scroll-indicator"
+import { ThemeButton } from "@/components/theme-button"
 
 export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0)
@@ -84,6 +85,7 @@ export default function Home() {
       </main>
 
       <ScrollIndicator />
+      <ThemeButton />
     </>
   )
 }
