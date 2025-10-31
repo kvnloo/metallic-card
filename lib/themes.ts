@@ -60,7 +60,7 @@ export const tokyoNight: Theme = {
     mutedForeground: '#9aa5ce', // Official markdown text
     electricBorder: '#7aa2f7',  // Blue accent
     electricLight: '#9ece6a',   // Official URL/green
-    gradient: 'rgba(122, 162, 247, 0.3)', // Blue with transparency
+    gradient: 'rgba(36, 40, 59, 0.4)', // Card color with slight transparency for depth
     silverBright: '#c0caf5',    // White
     silverMedium: '#7aa2f7',    // Blue
     silverDark: '#565f89',      // Official comments
@@ -95,7 +95,7 @@ export const nord: Theme = {
     mutedForeground: '#d8dee9', // nord4 - Snow Storm
     electricBorder: '#88c0d0',  // nord8 - Frost (cyan)
     electricLight: '#8fbcbb',   // nord7 - Frost (teal)
-    gradient: 'rgba(136, 192, 208, 0.3)', // Frost cyan with transparency
+    gradient: 'rgba(59, 66, 82, 0.4)', // Card color (nord1) with slight transparency
     silverBright: '#eceff4',    // nord6 - brightest
     silverMedium: '#88c0d0',    // nord8 - Frost
     silverDark: '#5e81ac',      // nord10 - Frost (dark blue)
@@ -130,7 +130,7 @@ export const catppuccin: Theme = {
     mutedForeground: '#bac2de', // Subtext 1
     electricBorder: '#89b4fa',  // Blue
     electricLight: '#94e2d5',   // Teal
-    gradient: 'rgba(137, 180, 250, 0.3)', // Blue with transparency
+    gradient: 'rgba(49, 50, 68, 0.4)', // Card color (Surface 0) with slight transparency
     silverBright: '#cdd6f4',    // Text
     silverMedium: '#89b4fa',    // Blue
     silverDark: '#74c7ec',      // Sapphire
@@ -165,7 +165,7 @@ export const oneDark: Theme = {
     mutedForeground: '#5c6370', // Comment grey
     electricBorder: '#61afef',  // Blue
     electricLight: '#98c379',   // Official green
-    gradient: 'rgba(97, 175, 239, 0.3)', // Blue with transparency
+    gradient: 'rgba(44, 49, 58, 0.4)', // Card color with slight transparency for depth
     silverBright: '#abb2bf',    // Foreground
     silverMedium: '#61afef',    // Blue
     silverDark: '#56b6c2',      // Official cyan
@@ -197,9 +197,9 @@ export const light: Theme = {
     accentForeground: '#ffffff',
     muted: '#f3f4f6',
     mutedForeground: '#6b7280',
-    electricBorder: '#9ca3af',
-    electricLight: '#d1d5db',
-    gradient: 'rgba(156, 163, 175, 0.2)',
+    electricBorder: '#1a1a1a',  // Black
+    electricLight: '#1a1a1a',   // Black
+    gradient: 'rgba(26, 26, 26, 0.2)',  // Black with transparency
     silverBright: '#e5e7eb',
     silverMedium: '#9ca3af',
     silverDark: '#6b7280',
