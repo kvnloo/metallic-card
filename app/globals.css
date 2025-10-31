@@ -354,7 +354,7 @@ body {
   border-radius: 24px;
   filter: blur(32px);
   transform: scale(1.1);
-  opacity: 0.3;
+  /* Opacity controlled via inline styles based on hover state */
   z-index: -1;
   background: linear-gradient(-30deg, var(--silver-bright), transparent, var(--electric-border-color));
   /* Added pointer-events: none to prevent blocking clicks */

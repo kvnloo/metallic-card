@@ -164,12 +164,16 @@ export default function ElectricBorderCard({ name, title, contactLinks = [] }: B
             className="background-glow"
             style={{
               background: `radial-gradient(circle at ${glowX}% ${glowY}%, var(--silver-bright), transparent 50%, var(--electric-border-color))`,
+              opacity: isHovered ? 0.3 : 0,
+              transition: 'opacity 0.3s ease',
             }}
           ></div>
           <div
             className="mouse-spotlight"
             style={{
               background: `radial-gradient(circle at ${glowX}% ${glowY}%, rgba(255, 255, 255, 0.15), transparent 40%)`,
+              opacity: isHovered ? 1 : 0,
+              transition: 'opacity 0.3s ease',
             }}
           ></div>
 
