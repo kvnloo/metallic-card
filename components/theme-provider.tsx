@@ -60,6 +60,10 @@ function ThemeApplier({ children }: { children: React.ReactNode }) {
       colors.iconColors.forEach((color, index) => {
         root.style.setProperty(`--icon-color-${index + 1}`, color)
       })
+
+      // Apply text element colors
+      root.style.setProperty('--name-color', colors.nameColor)
+      root.style.setProperty('--role-color', colors.roleColor)
     }
 
     // Get current theme from data-theme attribute

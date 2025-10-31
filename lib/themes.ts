@@ -29,6 +29,10 @@ export interface ThemeColors {
 
   // Icon colors (syntax-highlighting style)
   iconColors: string[]
+
+  // Text element colors (syntax-highlighting style)
+  nameColor: string    // Name/title color (like class/function names)
+  roleColor: string    // Role/description color (like strings/attributes)
 }
 
 export interface Theme {
@@ -68,6 +72,8 @@ export const tokyoNight: Theme = {
       '#e0af68',  // Email - Yellow (communication, highlight)
       '#9ece6a',  // Map Pin - Green (location, stable, earthy)
     ],
+    nameColor: '#7dcfff',    // Cyan (like function/class names)
+    roleColor: '#7dcfff',    // Same as name - cyan
   },
 }
 
@@ -101,6 +107,8 @@ export const nord: Theme = {
       '#ebcb8b',  // Email - Aurora Yellow (communication, warm)
       '#a3be8c',  // Map Pin - Aurora Green (location, natural, earthy)
     ],
+    nameColor: '#88c0d0',    // Frost Blue 2 (cyan)
+    roleColor: '#88c0d0',    // Same as name - cyan
   },
 }
 
@@ -134,6 +142,8 @@ export const catppuccin: Theme = {
       '#f9e2af',  // Email - Yellow (communication, attention)
       '#94e2d5',  // Map Pin - Teal (location, stable, earthy-cool)
     ],
+    nameColor: '#89dceb',    // Sky (bright cyan)
+    roleColor: '#89dceb',    // Same as name
   },
 }
 
@@ -167,6 +177,8 @@ export const oneDark: Theme = {
       '#e5c07b',  // Email - Yellow (communication, highlight)
       '#98c379',  // Map Pin - Green (location, grounded, natural)
     ],
+    nameColor: '#56b6c2',    // Cyan
+    roleColor: '#56b6c2',    // Same as name
   },
 }
 
@@ -199,6 +211,8 @@ export const light: Theme = {
       '#eab308',  // Email - Yellow (communication)
       '#10b981',  // Map Pin - Green (location)
     ],
+    nameColor: '#0891b2',    // Cyan 600
+    roleColor: '#0891b2',    // Same as name
   },
 }
 
@@ -231,6 +245,8 @@ export const dark: Theme = {
       '#888888',  // Email - Dark silver
       '#707070',  // Map Pin - Darkest silver
     ],
+    nameColor: '#e8e8e8',    // Bright silver
+    roleColor: '#e8e8e8',    // Same as name
   },
 }
 

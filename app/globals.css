@@ -515,13 +515,13 @@ body {
   margin-bottom: 12px;
   /* Added uppercase transformation */
   text-transform: uppercase;
-  color: var(--foreground);
+  color: var(--name-color);
 }
 
 /* Added Josefin Sans font styling for role/title description */
 .description {
   font-family: var(--font-josefin), sans-serif;
-  color: var(--foreground);
+  color: var(--role-color);
   opacity: 0.9;
 }
 
