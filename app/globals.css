@@ -436,7 +436,7 @@ body {
       color-mix(in srgb, var(--foreground) 12%, transparent) 0%,
       transparent 100%),
     color-mix(in srgb, var(--foreground) 4%, transparent);
-  color: color-mix(in srgb, var(--foreground) 90%, transparent);
+  /* Color is set inline via style attribute with CSS variables */
   /* Enhanced transition for smooth lift and highlight animation */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -444,6 +444,11 @@ body {
   cursor: pointer;
   pointer-events: auto;
   z-index: 1;
+}
+
+/* Ensure SVG icons inherit color from parent */
+.contact-button svg {
+  color: inherit;
 }
 
 /* Added hover animation with lift and highlight effect */
@@ -456,7 +461,8 @@ body {
   box-shadow: 0 8px 16px color-mix(in srgb, var(--electric-border-color) 20%, transparent),
     0 4px 8px color-mix(in srgb, var(--foreground) 10%, transparent),
     0 0 20px color-mix(in srgb, var(--electric-border-color) 15%, transparent);
-  color: var(--foreground);
+  /* Brighten the icon color on hover */
+  filter: brightness(1.2);
 }
 
 /* Added active state for button press feedback */

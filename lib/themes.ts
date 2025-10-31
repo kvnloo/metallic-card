@@ -26,6 +26,9 @@ export interface ThemeColors {
   silverBright: string
   silverMedium: string
   silverDark: string
+
+  // Icon colors (syntax-highlighting style)
+  iconColors: string[]
 }
 
 export interface Theme {
@@ -57,6 +60,14 @@ export const tokyoNight: Theme = {
     silverBright: '#c0caf5',    // White
     silverMedium: '#7aa2f7',    // Blue
     silverDark: '#565f89',      // Official comments
+    iconColors: [
+      '#7aa2f7',  // LinkedIn - Blue (professional, link-like)
+      '#bb9af7',  // Behance - Purple (creative, artistic)
+      '#7dcfff',  // GitHub - Cyan (technical, code-related)
+      '#ff9e64',  // Phone - Orange (warm, attention-grabbing)
+      '#e0af68',  // Email - Yellow (communication, highlight)
+      '#9ece6a',  // Map Pin - Green (location, stable, earthy)
+    ],
   },
 }
 
@@ -82,6 +93,14 @@ export const nord: Theme = {
     silverBright: '#eceff4',    // nord6 - brightest
     silverMedium: '#88c0d0',    // nord8 - Frost
     silverDark: '#5e81ac',      // nord10 - Frost (dark blue)
+    iconColors: [
+      '#5e81ac',  // LinkedIn - Frost Blue 4 (professional, deepest blue)
+      '#b48ead',  // Behance - Aurora Purple (creative, artistic)
+      '#88c0d0',  // GitHub - Frost Blue 2 (technical, bright cyan-blue)
+      '#d08770',  // Phone - Aurora Orange (warm, inviting)
+      '#ebcb8b',  // Email - Aurora Yellow (communication, warm)
+      '#a3be8c',  // Map Pin - Aurora Green (location, natural, earthy)
+    ],
   },
 }
 
@@ -107,6 +126,14 @@ export const catppuccin: Theme = {
     silverBright: '#cdd6f4',    // Text
     silverMedium: '#89b4fa',    // Blue
     silverDark: '#74c7ec',      // Sapphire
+    iconColors: [
+      '#89b4fa',  // LinkedIn - Blue (professional, primary link color)
+      '#cba6f7',  // Behance - Mauve (creative, vibrant purple)
+      '#89dceb',  // GitHub - Sky (technical, bright cyan)
+      '#fab387',  // Phone - Peach (warm, friendly, accessible)
+      '#f9e2af',  // Email - Yellow (communication, attention)
+      '#94e2d5',  // Map Pin - Teal (location, stable, earthy-cool)
+    ],
   },
 }
 
@@ -132,6 +159,14 @@ export const oneDark: Theme = {
     silverBright: '#abb2bf',    // Foreground
     silverMedium: '#61afef',    // Blue
     silverDark: '#56b6c2',      // Official cyan
+    iconColors: [
+      '#61afef',  // LinkedIn - Blue (professional, standard link)
+      '#c678dd',  // Behance - Purple (creative, distinctive)
+      '#56b6c2',  // GitHub - Cyan (technical, code-focused)
+      '#d19a66',  // Phone - Orange (warm, action-oriented)
+      '#e5c07b',  // Email - Yellow (communication, highlight)
+      '#98c379',  // Map Pin - Green (location, grounded, natural)
+    ],
   },
 }
 
@@ -156,6 +191,14 @@ export const light: Theme = {
     silverBright: '#e5e7eb',
     silverMedium: '#9ca3af',
     silverDark: '#6b7280',
+    iconColors: [
+      '#3b82f6',  // LinkedIn - Blue (primary accent)
+      '#8b5cf6',  // Behance - Purple (creative)
+      '#06b6d4',  // GitHub - Cyan (technical)
+      '#f97316',  // Phone - Orange (warm)
+      '#eab308',  // Email - Yellow (communication)
+      '#10b981',  // Map Pin - Green (location)
+    ],
   },
 }
 
@@ -180,6 +223,14 @@ export const dark: Theme = {
     silverBright: '#e8e8e8',
     silverMedium: '#a8a8a8',
     silverDark: '#808080',
+    iconColors: [
+      '#e8e8e8',  // LinkedIn - Bright silver
+      '#d0d0d0',  // Behance - Light silver
+      '#b8b8b8',  // GitHub - Medium silver
+      '#a0a0a0',  // Phone - Neutral silver
+      '#888888',  // Email - Dark silver
+      '#707070',  // Map Pin - Darkest silver
+    ],
   },
 }
 

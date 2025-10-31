@@ -55,6 +55,11 @@ function ThemeApplier({ children }: { children: React.ReactNode }) {
       root.style.setProperty('--silver-bright', colors.silverBright)
       root.style.setProperty('--silver-medium', colors.silverMedium)
       root.style.setProperty('--silver-dark', colors.silverDark)
+
+      // Apply icon colors (syntax-highlighting style)
+      colors.iconColors.forEach((color, index) => {
+        root.style.setProperty(`--icon-color-${index + 1}`, color)
+      })
     }
 
     // Get current theme from data-theme attribute
