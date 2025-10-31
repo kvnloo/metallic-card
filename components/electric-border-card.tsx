@@ -68,7 +68,18 @@ export default function ElectricBorderCard({ name, title, contactLinks = [] }: B
     setGlowY(glowYPos)
   }
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return
+
+    const card = cardRef.current
+    const rect = card.getBoundingClientRect()
+
+    // Set initial glow position to where mouse entered
+    const glowXPos = ((e.clientX - rect.left) / rect.width) * 100
+    const glowYPos = ((e.clientY - rect.top) / rect.height) * 100
+    setGlowX(glowXPos)
+    setGlowY(glowYPos)
+
     setIsHovered(true)
   }
 
@@ -77,8 +88,7 @@ export default function ElectricBorderCard({ name, title, contactLinks = [] }: B
     setRotateX(15)
     setRotateY(-20)
     setRotateZ(5)
-    setGlowX(50)
-    setGlowY(50)
+    // Don't reset glow position - keep it where the mouse left
   }
 
   const getHref = (link: ContactLink): string => {
