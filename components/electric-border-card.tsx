@@ -178,8 +178,6 @@ export default function ElectricBorderCard({ name, title, contactLinks = [] }: B
               <p className="title-large title-name">{name}</p>
             </div>
 
-            <hr className="divider" />
-
             <div className="content-bottom">
               <p className="description">
                 {typeof title === 'string' ? (
@@ -210,6 +208,7 @@ export default function ElectricBorderCard({ name, title, contactLinks = [] }: B
                         className="contact-button"
                         aria-label={link.ariaLabel}
                         title={link.label}
+                        style={{ color: `var(--icon-color-${index + 1})` }}
                       >
                         {IconComponent ? <IconComponent size={20} /> : null}
                       </a>
