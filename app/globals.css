@@ -138,13 +138,30 @@
   box-sizing: border-box;
 }
 
+/* Theme transitions removed for instant synchronized color changes */
+
 body {
   font-family: system-ui, -apple-system, sans-serif;
-  background-color: oklch(0.145 0 0);
-  color: oklch(0.985 0 0);
-  /* Removed overflow hidden to enable scrolling */
+  background-color: var(--background);
+  color: var(--foreground);
+  /* Enable scrolling for scroll-based animation */
   overflow-x: hidden;
   overflow-y: auto;
+  /* Add min-height to enable scrolling */
+  min-height: 200vh;
+}
+
+/* Restored v12 single centered container layout */
+.portfolio-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100vw;
+  perspective: 1500px;
+  perspective-origin: center center;
+  position: relative;
+  transform-origin: center center;
 }
 
 /* Updated portfolio container for scroll sections */
@@ -157,13 +174,15 @@ body {
   perspective: 1500px;
   perspective-origin: center center;
   position: relative;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  /* Removed transition to allow inline style control for smoother scroll-based animation */
 }
 
 .portfolio-section:first-child {
   position: sticky;
   top: 0;
   z-index: 1;
+  /* Added transform-origin for better scale animation */
+  transform-origin: center center;
 }
 
 /* Added section content styling */
@@ -204,14 +223,13 @@ body {
 
 /* 3D card wrapper for tilt effect */
 .card-3d-wrapper {
-  /* Removed static transform and hover effect for dynamic mouse-based animation */
   transform-style: preserve-3d;
-  /* Smooth transition handled via inline style */
   cursor: pointer;
+  /* Added backface-visibility for better 3D performance */
+  backface-visibility: hidden;
+  /* Added transform-origin for consistent scaling */
+  transform-origin: center center;
 }
-
-/* Removed static hover effect */
-/* .card-3d-wrapper:hover { ... } */
 
 /* Card container */
 .card-container {
@@ -219,11 +237,13 @@ body {
   border-radius: 24px;
   position: relative;
   background: linear-gradient(-30deg, var(--gradient-color), transparent, var(--gradient-color)),
-    linear-gradient(to bottom, var(--color-neutral-900), var(--color-neutral-900));
-  /* Enhanced shadow for more depth */
-  box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.8), 0 30px 60px -30px rgba(192, 192, 192, 0.3), 0 0 80px
-    rgba(192, 192, 192, 0.1);
+    linear-gradient(to bottom, var(--card), var(--card));
+  box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.8),
+    0 30px 60px -30px color-mix(in srgb, var(--electric-border-color) 30%, transparent),
+    0 0 80px color-mix(in srgb, var(--electric-border-color) 10%, transparent);
   transition: box-shadow 0.3s ease;
+  /* Added will-change hint for better performance during scroll */
+  will-change: transform;
 }
 
 /* Main container */
@@ -242,7 +262,7 @@ body {
 
 /* Border layers */
 .border-outer {
-  border: 2px solid rgba(192, 192, 192, 0.5);
+  border: 2px solid color-mix(in srgb, var(--electric-border-color) 50%, transparent);
   border-radius: 24px;
   padding-right: 4px;
   padding-bottom: 4px;
@@ -260,7 +280,7 @@ body {
 
 /* Glow effects */
 .glow-layer-1 {
-  border: 2px solid rgba(192, 192, 192, 0.6);
+  border: 2px solid color-mix(in srgb, var(--electric-border-color) 60%, transparent);
   border-radius: 24px;
   width: 100%;
   height: 100%;
@@ -299,7 +319,9 @@ body {
   mix-blend-mode: overlay;
   transform: scale(1.1);
   filter: blur(16px);
-  background: linear-gradient(-30deg, white, transparent 30%, transparent 70%, white);
+  background: linear-gradient(-30deg, var(--silver-bright), transparent 30%, transparent 70%, var(--silver-bright));
+  /* Added pointer-events: none to prevent blocking clicks */
+  pointer-events: none;
 }
 
 .overlay-2 {
@@ -315,7 +337,9 @@ body {
   mix-blend-mode: overlay;
   transform: scale(1.1);
   filter: blur(16px);
-  background: linear-gradient(-30deg, white, transparent 30%, transparent 70%, white);
+  background: linear-gradient(-30deg, var(--silver-bright), transparent 30%, transparent 70%, var(--silver-bright));
+  /* Added pointer-events: none to prevent blocking clicks */
+  pointer-events: none;
 }
 
 /* Background glow */
@@ -330,9 +354,11 @@ body {
   border-radius: 24px;
   filter: blur(32px);
   transform: scale(1.1);
-  opacity: 0.3;
+  /* Opacity controlled via inline styles based on hover state */
   z-index: -1;
   background: linear-gradient(-30deg, var(--silver-bright), transparent, var(--electric-border-color));
+  /* Added pointer-events: none to prevent blocking clicks */
+  pointer-events: none;
 }
 
 /* Content container */
@@ -346,6 +372,9 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+  /* Added z-index to ensure content is above overlay effects */
+  z-index: 20;
+  pointer-events: none;
 }
 
 /* Content sections */
@@ -353,254 +382,139 @@ body {
   display: flex;
   flex-direction: column;
   padding: 48px;
-  padding-bottom: 16px;
+  /* Reduced bottom padding to bring name closer to divider */
+  padding-bottom: 8px;
   height: 100%;
+  /* Added justify-content to push name to bottom of top section */
+  justify-content: flex-end;
+  /* Allow pointer events on content */
+  pointer-events: auto;
 }
 
 .content-bottom {
   display: flex;
   flex-direction: column;
   padding: 48px;
-  padding-top: 16px;
+  /* Reduced top padding to bring title closer to divider */
+  padding-top: 8px;
+  /* Allow pointer events on content */
+  pointer-events: auto;
 }
 
-/* Scrollbar glass component */
-.scrollbar-glass {
-  background: radial-gradient(47.2% 50% at 50.39% 88.37%, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%),
-    rgba(255, 255, 255, 0.04);
-  position: relative;
-  transition: background 0.3s ease;
-  border-radius: 14px;
-  width: fit-content;
-  height: fit-content;
-  padding: 8px 16px;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.scrollbar-glass:hover {
-  background: radial-gradient(47.2% 50% at 50.39% 88.37%, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%),
-    rgba(255, 255, 255, 0.08);
-}
-
-.scrollbar-glass::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 1px;
-  background: linear-gradient(
-    150deg,
-    rgba(255, 255, 255, 0.48) 16.73%,
-    rgba(255, 255, 255, 0.08) 30.2%,
-    rgba(255, 255, 255, 0.08) 68.2%,
-    rgba(255, 255, 255, 0.6) 81.89%
-  );
-  border-radius: inherit;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: xor;
-  -webkit-mask-composite: xor;
-  pointer-events: none;
-}
-
-/* Typography */
-.title {
-  font-size: 36px;
-  font-weight: 500;
-  margin-top: auto;
-}
-
-.description {
-  opacity: 0.5;
-}
-
-/* Divider */
-.divider {
-  margin-top: auto;
-  border: none;
-  height: 1px;
-  background-color: currentColor;
-  opacity: 0.1;
-  mask-image: linear-gradient(to right, transparent, black, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black, transparent);
-}
-
-/* Added social links styling */
-.social-links {
+/* Updated contact links to display in a single horizontal row */
+.contact-links-row {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   margin-top: 24px;
+  justify-content: flex-start;
+  align-items: center;
+  /* Ensure buttons are above all overlay effects */
+  position: relative;
+  z-index: 30;
 }
 
-.social-button {
+.contact-button {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  background: radial-gradient(47.2% 50% at 50.39% 88.37%, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%),
-    rgba(255, 255, 255, 0.04);
-  color: rgba(255, 255, 255, 0.9);
-  transition: all 0.3s ease;
+  background: radial-gradient(47.2% 50% at 50.39% 88.37%,
+      color-mix(in srgb, var(--foreground) 12%, transparent) 0%,
+      transparent 100%),
+    color-mix(in srgb, var(--foreground) 4%, transparent);
+  /* Color is set inline via style attribute with CSS variables */
+  /* Enhanced transition for smooth lift and highlight animation */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   text-decoration: none;
-}
-
-.social-button:hover {
-  background: radial-gradient(47.2% 50% at 50.39% 88.37%, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 100%),
-    rgba(255, 255, 255, 0.08);
-  transform: translateY(-2px);
-  color: rgba(255, 255, 255, 1);
-}
-
-.social-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 1px;
-  background: linear-gradient(
-    150deg,
-    rgba(255, 255, 255, 0.3) 16.73%,
-    rgba(255, 255, 255, 0.05) 30.2%,
-    rgba(255, 255, 255, 0.05) 68.2%,
-    rgba(255, 255, 255, 0.4) 81.89%
-  );
-  border-radius: inherit;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: xor;
-  -webkit-mask-composite: xor;
-  pointer-events: none;
-}
-
-/* Updated scroll indicator with better positioning */
-.scroll-indicator {
-  position: fixed;
-  right: 48px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  z-index: 1000;
-}
-
-.scroll-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
-  border: 2px solid rgba(255, 255, 255, 0.25);
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  padding: 0;
-  position: relative;
+  pointer-events: auto;
+  z-index: 1;
 }
 
-.scroll-dot:hover {
-  background: rgba(255, 255, 255, 0.35);
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: scale(1.3);
+/* Ensure SVG icons inherit color from parent */
+.contact-button svg {
+  color: inherit;
 }
 
-.scroll-dot.active {
-  background: rgba(192, 192, 192, 0.95);
-  border-color: rgba(192, 192, 192, 1);
-  box-shadow: 0 0 16px rgba(192, 192, 192, 0.7), 0 0 32px rgba(192, 192, 192, 0.3);
-  transform: scale(1.4);
+/* Added hover animation with lift and highlight effect */
+.contact-button:hover {
+  transform: translateY(-4px);
+  background: radial-gradient(47.2% 50% at 50.39% 88.37%,
+      color-mix(in srgb, var(--foreground) 20%, transparent) 0%,
+      color-mix(in srgb, var(--foreground) 5%, transparent) 100%),
+    color-mix(in srgb, var(--foreground) 8%, transparent);
+  box-shadow: 0 8px 16px color-mix(in srgb, var(--electric-border-color) 20%, transparent),
+    0 4px 8px color-mix(in srgb, var(--foreground) 10%, transparent),
+    0 0 20px color-mix(in srgb, var(--electric-border-color) 15%, transparent);
+  /* Brighten the icon color on hover */
+  filter: brightness(1.2);
 }
 
-.scroll-dot.active::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 2px solid rgba(192, 192, 192, 0.4);
-  animation: pulse 2s ease-in-out infinite;
+/* Added active state for button press feedback */
+.contact-button:active {
+  transform: translateY(-2px);
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(1.6);
-  }
+/* Divider */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0;
+  opacity: 0.5;
 }
 
-/* Responsive adjustments for scroll indicator */
-@media (max-width: 768px) {
-  .scroll-indicator {
-    right: 24px;
-  }
-
-  .social-links {
-    gap: 8px;
-  }
-
-  .social-button {
-    width: 36px;
-    height: 36px;
-  }
+/* Typography */
+.scrollbar-glass {
+  font-family: var(--font-josefin), sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 16px;
 }
 
-/* Added mouse spotlight effect */
-.mouse-spotlight {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 24px;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 10;
-}
-
-.card-3d-wrapper:hover .mouse-spotlight {
-  opacity: 1;
-}
-
-/* Added Nerd Font icon styling */
-.nerd-icon {
-  font-size: 20px;
-  line-height: 1;
-  font-family: "Symbols Nerd Font", "Symbols Nerd Font Mono", monospace, system-ui, -apple-system, sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Added contact info styling for optional phone/location display */
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 16px;
+.title {
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
   margin-bottom: 8px;
 }
 
-.contact-item {
-  font-size: 14px;
-  opacity: 0.7;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+/* Added larger title style for name without category */
+.title-large {
+  font-size: 48px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  margin-top: 32px;
+}
+
+/* Added Josefin Sans font styling for name */
+.title-name {
+  font-family: var(--font-josefin), sans-serif;
+  margin-top: 0;
+  margin-bottom: 12px;
+  /* Added uppercase transformation */
+  text-transform: uppercase;
+  color: var(--name-color);
+}
+
+/* Added Josefin Sans font styling for role/title description */
+.description {
+  font-family: var(--font-josefin), sans-serif;
+  color: var(--role-color);
+  opacity: 0.9;
+}
+
+/* Keep company name bold and with Josefin Sans */
+.description strong {
+  font-family: var(--font-josefin), sans-serif;
 }

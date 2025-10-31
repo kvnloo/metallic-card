@@ -2,34 +2,33 @@
 
 import type React from "react"
 import { useState, useRef } from "react"
+import { Linkedin, Github, Phone, Mail, MapPin, Palette, type LucideIcon } from "lucide-react"
 
-export interface SocialLink {
-  platform: string
-  url: string
-  icon: string
+export interface ContactLink {
+  type: "social" | "phone" | "email" | "location"
+  label: string
+  value: string // URL for social, phone number, email, or location text
+  icon: string // Icon name (e.g., "linkedin", "github", "phone", "mail", "map-pin", "behance")
   ariaLabel: string
 }
 
-export interface ContactInfo {
-  phone?: string
-  location?: string
+// Icon mapping
+const iconMap: Record<string, LucideIcon> = {
+  linkedin: Linkedin,
+  github: Github,
+  phone: Phone,
+  mail: Mail,
+  "map-pin": MapPin,
+  behance: Palette, // Lucide doesn't have Behance, using Palette as creative portfolio icon
 }
 
 export interface BusinessCardProps {
   name: string
-  title: string
-  category?: string
-  socialLinks?: SocialLink[]
-  contactInfo?: ContactInfo
+  title: string | { role: string; company?: string }
+  contactLinks?: ContactLink[]
 }
 
-export default function ElectricBorderCard({
-  name,
-  title,
-  category = "Portfolio",
-  socialLinks = [],
-  contactInfo,
-}: BusinessCardProps) {
+export default function ElectricBorderCard({ name, title, contactLinks = [] }: BusinessCardProps) {
   const [rotateX, setRotateX] = useState(15)
   const [rotateY, setRotateY] = useState(-20)
   const [rotateZ, setRotateZ] = useState(5)
@@ -69,7 +68,18 @@ export default function ElectricBorderCard({
     setGlowY(glowYPos)
   }
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return
+
+    const card = cardRef.current
+    const rect = card.getBoundingClientRect()
+
+    // Set initial glow position to where mouse entered
+    const glowXPos = ((e.clientX - rect.left) / rect.width) * 100
+    const glowYPos = ((e.clientY - rect.top) / rect.height) * 100
+    setGlowX(glowXPos)
+    setGlowY(glowYPos)
+
     setIsHovered(true)
   }
 
@@ -78,8 +88,22 @@ export default function ElectricBorderCard({
     setRotateX(15)
     setRotateY(-20)
     setRotateZ(5)
-    setGlowX(50)
-    setGlowY(50)
+    // Don't reset glow position - keep it where the mouse left
+  }
+
+  const getHref = (link: ContactLink): string => {
+    switch (link.type) {
+      case "social":
+        return link.value
+      case "phone":
+        return `tel:${link.value}`
+      case "email":
+        return `mailto:${link.value}`
+      case "location":
+        return `https://maps.google.com/?q=${encodeURIComponent(link.value)}`
+      default:
+        return link.value
+    }
   }
 
   return (
@@ -150,47 +174,60 @@ export default function ElectricBorderCard({
             className="background-glow"
             style={{
               background: `radial-gradient(circle at ${glowX}% ${glowY}%, var(--silver-bright), transparent 50%, var(--electric-border-color))`,
+              opacity: isHovered ? 0.3 : 0,
+              transition: 'opacity 0.3s ease',
             }}
           ></div>
           <div
             className="mouse-spotlight"
             style={{
               background: `radial-gradient(circle at ${glowX}% ${glowY}%, rgba(255, 255, 255, 0.15), transparent 40%)`,
+              opacity: isHovered ? 1 : 0,
+              transition: 'opacity 0.3s ease',
             }}
           ></div>
 
           <div className="content-container">
             <div className="content-top">
-              <div className="scrollbar-glass">{category}</div>
-              <p className="title">{name}</p>
+              <p className="title-large title-name">{name}</p>
             </div>
 
-            <hr className="divider" />
-
             <div className="content-bottom">
-              <p className="description">{title}</p>
+              <p className="description">
+                {typeof title === 'string' ? (
+                  title
+                ) : (
+                  <>
+                    {title.role}
+                    {title.company && (
+                      <>
+                        {' | '}
+                        <strong>{title.company}</strong>
+                      </>
+                    )}
+                  </>
+                )}
+              </p>
 
-              {contactInfo && (
-                <div className="contact-info">
-                  {contactInfo.phone && <p className="contact-item">📞 {contactInfo.phone}</p>}
-                  {contactInfo.location && <p className="contact-item">📍 {contactInfo.location}</p>}
-                </div>
-              )}
-
-              {socialLinks.length > 0 && (
-                <div className="social-links">
-                  {socialLinks.map((link, index) => (
-                    <a
-                      key={index}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="social-button nerd-icon"
-                      aria-label={link.ariaLabel}
-                    >
-                      {link.icon}
-                    </a>
-                  ))}
+              {contactLinks.length > 0 && (
+                <div className="contact-links-row">
+                  {contactLinks.map((link, index) => {
+                    const IconComponent = iconMap[link.icon]
+                    return (
+                      <a
+                        key={index}
+                        href={getHref(link)}
+                        target={link.type === "social" ? "_blank" : undefined}
+                        rel={link.type === "social" ? "noopener noreferrer" : undefined}
+                        className="contact-button"
+                        aria-label={link.ariaLabel}
+                        title={link.label}
+                        style={{ color: `var(--icon-color-${index + 1})` }}
+                      >
+                        {IconComponent ? <IconComponent size={20} /> : null}
+                      </a>
+                    )
+                  })}
                 </div>
               )}
             </div>
