@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Josefin_Sans } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
+import { AutoThemeDetector } from "@/components/auto-theme-detector"
 import "./globals.css"
 
 const josefinSans = Josefin_Sans({
@@ -25,6 +26,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={josefinSans.variable}>
         <ThemeProvider defaultTheme="dark">
+          <AutoThemeDetector />
           {children}
         </ThemeProvider>
       </body>

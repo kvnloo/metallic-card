@@ -178,8 +178,6 @@ export default function ElectricBorderCard({ name, title, contactLinks = [] }: B
               <p className="title-large title-name">{name}</p>
             </div>
 
-            <hr className="divider" />
-
             <div className="content-bottom">
               <p className="description">
                 {typeof title === 'string' ? (
