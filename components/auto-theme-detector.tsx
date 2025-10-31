@@ -2,70 +2,43 @@
 
 import { useEffect } from 'react'
 import { useTheme } from 'next-themes'
-import * as SunCalc from 'suncalc'
 
 export function AutoThemeDetector() {
   const { setTheme } = useTheme()
 
   useEffect(() => {
-    const updateThemeBasedOnTime = (latitude?: number, longitude?: number) => {
-      const now = new Date()
+    // Check if browser supports prefers-color-scheme
+    if (!window.matchMedia) {
+      console.log('Browser does not support prefers-color-scheme')
+      return
+    }
 
-      // Use provided coordinates or default to San Francisco
-      const lat = latitude ?? 37.7749
-      const lon = longitude ?? -122.4194
-
-      // Calculate sunrise and sunset times for today
-      const times = SunCalc.getTimes(now, lat, lon)
-      const sunrise = times.sunrise
-      const sunset = times.sunset
-
-      // Check if current time is between sunrise and sunset (daytime)
-      const isDaytime = now >= sunrise && now <= sunset
-
-      // Set theme based on time of day
-      if (isDaytime) {
-        setTheme('light')
-      } else {
-        setTheme('dark')
-      }
-
+    // Function to update theme based on system preference
+    const updateTheme = (e: MediaQueryListEvent | MediaQueryList) => {
+      const isDarkMode = e.matches
+      setTheme(isDarkMode ? 'dark' : 'light')
       console.log('Auto theme:', {
-        location: { lat, lon },
-        sunrise: sunrise.toLocaleTimeString(),
-        sunset: sunset.toLocaleTimeString(),
-        now: now.toLocaleTimeString(),
-        isDaytime,
-        selectedTheme: isDaytime ? 'light' : 'dark'
+        systemPreference: isDarkMode ? 'dark' : 'light',
+        selectedTheme: isDarkMode ? 'dark' : 'light'
       })
     }
 
-    // Try to get user's location
-    const getLocationAndUpdateTheme = () => {
-      if ('geolocation' in navigator) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const { latitude, longitude } = position.coords
-            updateThemeBasedOnTime(latitude, longitude)
-          },
-          (error) => {
-            console.log('Location access denied, using default location:', error.message)
-            updateThemeBasedOnTime()
-          }
-        )
-      } else {
-        console.log('Geolocation not supported, using default location')
-        updateThemeBasedOnTime()
-      }
+    // Create media query for dark mode preference
+    const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)')
+
+    // Set initial theme based on system preference
+    updateTheme(darkModeQuery)
+
+    // Listen for changes to system preference
+    // Modern browsers use addEventListener
+    if (darkModeQuery.addEventListener) {
+      darkModeQuery.addEventListener('change', updateTheme)
+      return () => darkModeQuery.removeEventListener('change', updateTheme)
+    } else {
+      // Fallback for older browsers
+      darkModeQuery.addListener(updateTheme)
+      return () => darkModeQuery.removeListener(updateTheme)
     }
-
-    // Initial update
-    getLocationAndUpdateTheme()
-
-    // Update every minute to catch sunrise/sunset transitions
-    const interval = setInterval(getLocationAndUpdateTheme, 60000)
-
-    return () => clearInterval(interval)
   }, [setTheme])
 
   return null
