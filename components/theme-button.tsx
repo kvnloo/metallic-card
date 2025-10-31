@@ -48,15 +48,15 @@ export function ThemeButton() {
   }, [showDropdown])
 
   const handleMouseEnter = () => {
-    // Show dropdown after 2 second delay
+    // Show dropdown after 600ms delay (optimal UX timing)
     const timeout = setTimeout(() => {
       setShowDropdown(true)
-    }, 2000)
+    }, 600)
     setHoverTimeout(timeout)
   }
 
   const handleMouseLeave = () => {
-    // Clear timeout if user leaves before 2 seconds
+    // Clear timeout if user leaves before delay completes
     if (hoverTimeout) {
       clearTimeout(hoverTimeout)
       setHoverTimeout(null)

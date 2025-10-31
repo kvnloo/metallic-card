@@ -1,4 +1,4 @@
-// Theme definitions with authentic color palettes
+// Theme definitions with OFFICIAL color palettes from each theme's source
 export interface ThemeColors {
   // Background colors
   background: string
@@ -35,99 +35,103 @@ export interface Theme {
   colors: ThemeColors
 }
 
-// Tokyo Night (Dark) - Popular VSCode theme
+// Tokyo Night (Dark) - Official VSCode theme
+// Source: https://github.com/tokyo-night/tokyo-night-vscode-theme
 export const tokyoNight: Theme = {
   id: 'tokyo-night',
   name: 'Tokyo Night',
   type: 'dark',
   colors: {
-    background: '#1a1b26',
-    foreground: '#c0caf5',
-    card: '#24283b',
+    background: '#1a1b26',      // Official background
+    foreground: '#c0caf5',      // Official white/foreground
+    card: '#24283b',            // Official storm background (for cards)
     cardForeground: '#c0caf5',
-    border: '#414868',
-    accent: '#7aa2f7',
+    border: '#414868',          // Official black terminal color
+    accent: '#7aa2f7',          // Official blue
     accentForeground: '#1a1b26',
-    muted: '#32344a',
-    mutedForeground: '#9aa5ce',
-    electricBorder: '#7aa2f7',
-    electricLight: '#9ece6a',
-    gradient: 'rgba(122, 162, 247, 0.3)',
-    silverBright: '#c0caf5',
-    silverMedium: '#7aa2f7',
-    silverDark: '#565f89',
+    muted: '#32344a',           // Slightly lighter than border
+    mutedForeground: '#9aa5ce', // Official markdown text
+    electricBorder: '#7aa2f7',  // Blue accent
+    electricLight: '#9ece6a',   // Official URL/green
+    gradient: 'rgba(122, 162, 247, 0.3)', // Blue with transparency
+    silverBright: '#c0caf5',    // White
+    silverMedium: '#7aa2f7',    // Blue
+    silverDark: '#565f89',      // Official comments
   },
 }
 
 // Nord (Cool, muted colors)
+// Source: https://www.nordtheme.com/docs/colors-and-palettes/
 export const nord: Theme = {
   id: 'nord',
   name: 'Nord',
   type: 'dark',
   colors: {
-    background: '#2e3440',
-    foreground: '#eceff4',
-    card: '#3b4252',
+    background: '#2e3440',      // nord0 - Polar Night
+    foreground: '#eceff4',      // nord6 - Snow Storm
+    card: '#3b4252',            // nord1 - Polar Night
     cardForeground: '#eceff4',
-    border: '#4c566a',
-    accent: '#88c0d0',
+    border: '#4c566a',          // nord3 - Polar Night
+    accent: '#88c0d0',          // nord8 - Frost
     accentForeground: '#2e3440',
-    muted: '#434c5e',
-    mutedForeground: '#d8dee9',
-    electricBorder: '#88c0d0',
-    electricLight: '#8fbcbb',
-    gradient: 'rgba(136, 192, 208, 0.3)',
-    silverBright: '#eceff4',
-    silverMedium: '#88c0d0',
-    silverDark: '#5e81ac',
+    muted: '#434c5e',           // nord2 - Polar Night
+    mutedForeground: '#d8dee9', // nord4 - Snow Storm
+    electricBorder: '#88c0d0',  // nord8 - Frost (cyan)
+    electricLight: '#8fbcbb',   // nord7 - Frost (teal)
+    gradient: 'rgba(136, 192, 208, 0.3)', // Frost cyan with transparency
+    silverBright: '#eceff4',    // nord6 - brightest
+    silverMedium: '#88c0d0',    // nord8 - Frost
+    silverDark: '#5e81ac',      // nord10 - Frost (dark blue)
   },
 }
 
 // Catppuccin Mocha (Pastel, soft colors)
+// Source: https://catppuccin.com/palette/
 export const catppuccin: Theme = {
   id: 'catppuccin',
   name: 'Catppuccin',
   type: 'dark',
   colors: {
-    background: '#1e1e2e',
-    foreground: '#cdd6f4',
-    card: '#313244',
+    background: '#1e1e2e',      // Base
+    foreground: '#cdd6f4',      // Text
+    card: '#313244',            // Surface 0
     cardForeground: '#cdd6f4',
-    border: '#585b70',
-    accent: '#89b4fa',
+    border: '#585b70',          // Surface 2
+    accent: '#89b4fa',          // Blue
     accentForeground: '#1e1e2e',
-    muted: '#45475a',
-    mutedForeground: '#bac2de',
-    electricBorder: '#89b4fa',
-    electricLight: '#94e2d5',
-    gradient: 'rgba(137, 180, 250, 0.3)',
-    silverBright: '#cdd6f4',
-    silverMedium: '#89b4fa',
-    silverDark: '#74c7ec',
+    muted: '#45475a',           // Surface 1
+    mutedForeground: '#bac2de', // Subtext 1
+    electricBorder: '#89b4fa',  // Blue
+    electricLight: '#94e2d5',   // Teal
+    gradient: 'rgba(137, 180, 250, 0.3)', // Blue with transparency
+    silverBright: '#cdd6f4',    // Text
+    silverMedium: '#89b4fa',    // Blue
+    silverDark: '#74c7ec',      // Sapphire
   },
 }
 
 // One Dark (Atom-inspired)
+// Source: https://github.com/atom/one-dark-syntax
 export const oneDark: Theme = {
   id: 'one-dark',
   name: 'One Dark',
   type: 'dark',
   colors: {
-    background: '#282c34',
-    foreground: '#abb2bf',
-    card: '#2c313a',
+    background: '#282c34',      // Official background
+    foreground: '#abb2bf',      // Official foreground
+    card: '#2c313a',            // Slightly lighter than background
     cardForeground: '#abb2bf',
-    border: '#4b5263',
-    accent: '#61afef',
+    border: '#4b5263',          // Gutter grey
+    accent: '#61afef',          // Official blue
     accentForeground: '#282c34',
-    muted: '#3e4451',
-    mutedForeground: '#9196a1',
-    electricBorder: '#61afef',
-    electricLight: '#98c379',
-    gradient: 'rgba(97, 175, 239, 0.3)',
-    silverBright: '#abb2bf',
-    silverMedium: '#61afef',
-    silverDark: '#528bff',
+    muted: '#3e4451',           // Grey (inactive)
+    mutedForeground: '#5c6370', // Comment grey
+    electricBorder: '#61afef',  // Blue
+    electricLight: '#98c379',   // Official green
+    gradient: 'rgba(97, 175, 239, 0.3)', // Blue with transparency
+    silverBright: '#abb2bf',    // Foreground
+    silverMedium: '#61afef',    // Blue
+    silverDark: '#56b6c2',      // Official cyan
   },
 }
 
@@ -155,7 +159,7 @@ export const light: Theme = {
   },
 }
 
-// Dark theme (Default dark)
+// Dark theme (Default dark - Silver metallic)
 export const dark: Theme = {
   id: 'dark',
   name: 'Dark',
@@ -170,8 +174,8 @@ export const dark: Theme = {
     accentForeground: '#0a0a0a',
     muted: '#1f1f1f',
     mutedForeground: '#a3a3a3',
-    electricBorder: '#c0c0c0',
-    electricLight: '#e8e8e8',
+    electricBorder: '#c0c0c0',  // Silver
+    electricLight: '#e8e8e8',   // Bright silver
     gradient: 'rgba(192, 192, 192, 0.3)',
     silverBright: '#e8e8e8',
     silverMedium: '#a8a8a8',
