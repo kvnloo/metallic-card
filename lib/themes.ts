@@ -107,8 +107,8 @@ export const nord: Theme = {
       '#ebcb8b',  // Email - Aurora Yellow (communication, warm)
       '#a3be8c',  // Map Pin - Aurora Green (location, natural, earthy)
     ],
-    nameColor: '#88c0d0',    // Frost Blue 2 (cyan)
-    roleColor: '#88c0d0',    // Same as name - cyan
+    nameColor: '#bf616a',    // Aurora Red (nord11 - stands out from background)
+    roleColor: '#bf616a',    // Same as name - red
   },
 }
 
@@ -204,15 +204,15 @@ export const light: Theme = {
     silverMedium: '#9ca3af',
     silverDark: '#6b7280',
     iconColors: [
-      '#3b82f6',  // LinkedIn - Blue (primary accent)
-      '#8b5cf6',  // Behance - Purple (creative)
-      '#06b6d4',  // GitHub - Cyan (technical)
-      '#f97316',  // Phone - Orange (warm)
-      '#eab308',  // Email - Yellow (communication)
-      '#10b981',  // Map Pin - Green (location)
+      '#1a1a1a',  // LinkedIn - Black
+      '#1a1a1a',  // Behance - Black
+      '#1a1a1a',  // GitHub - Black
+      '#1a1a1a',  // Phone - Black
+      '#1a1a1a',  // Email - Black
+      '#1a1a1a',  // Map Pin - Black
     ],
-    nameColor: '#0891b2',    // Cyan 600
-    roleColor: '#0891b2',    // Same as name
+    nameColor: '#1a1a1a',    // Black
+    roleColor: '#1a1a1a',    // Black
   },
 }
 
