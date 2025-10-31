@@ -81,7 +81,7 @@ export default function Home() {
           willChange: scrollProgress > 0 && scrollProgress < 1 ? "transform, opacity" : "auto",
         }}
       >
-        <ElectricBorderCard name="Kevin Rajan" title={{ role: "Founder & CEO", company: "zer0" }} contactLinks={contactLinks} />
+        <ElectricBorderCard name="Kevin Rajan" title={{ role: "Founder & CEO", company: "zerø" }} contactLinks={contactLinks} />
       </main>
 
       <ScrollIndicator />
