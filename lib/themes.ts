@@ -239,11 +239,11 @@ export const dark: Theme = {
     silverDark: '#808080',
     iconColors: [
       '#e8e8e8',  // LinkedIn - Bright silver
-      '#d0d0d0',  // Behance - Light silver
-      '#b8b8b8',  // GitHub - Medium silver
-      '#a0a0a0',  // Phone - Neutral silver
-      '#888888',  // Email - Dark silver
-      '#707070',  // Map Pin - Darkest silver
+      '#e8e8e8',  // Behance - Bright silver
+      '#e8e8e8',  // GitHub - Bright silver
+      '#e8e8e8',  // Phone - Bright silver
+      '#e8e8e8',  // Email - Bright silver
+      '#e8e8e8',  // Map Pin - Bright silver
     ],
     nameColor: '#e8e8e8',    // Bright silver
     roleColor: '#e8e8e8',    // Same as name
