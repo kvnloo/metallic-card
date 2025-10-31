@@ -3,10 +3,19 @@
 import { useEffect } from 'react'
 import { useTheme } from 'next-themes'
 
+const MANUAL_THEME_KEY = 'manual-theme-override'
+
 export function AutoThemeDetector() {
-  const { setTheme } = useTheme()
+  const { setTheme, theme } = useTheme()
 
   useEffect(() => {
+    // Check if user has manually selected a theme
+    const hasManualOverride = localStorage.getItem(MANUAL_THEME_KEY)
+    if (hasManualOverride) {
+      console.log('Auto theme: Manual override detected, skipping auto-theme')
+      return
+    }
+
     // Check if browser supports prefers-color-scheme
     if (!window.matchMedia) {
       console.log('Browser does not support prefers-color-scheme')
@@ -15,6 +24,11 @@ export function AutoThemeDetector() {
 
     // Function to update theme based on system preference
     const updateTheme = (e: MediaQueryListEvent | MediaQueryList) => {
+      // Double-check manual override hasn't been set
+      if (localStorage.getItem(MANUAL_THEME_KEY)) {
+        return
+      }
+
       const isDarkMode = e.matches
       setTheme(isDarkMode ? 'dark' : 'light')
       console.log('Auto theme:', {
@@ -39,7 +53,7 @@ export function AutoThemeDetector() {
       darkModeQuery.addListener(updateTheme)
       return () => darkModeQuery.removeListener(updateTheme)
     }
-  }, [setTheme])
+  }, [setTheme, theme])
 
   return null
 }

@@ -67,12 +67,18 @@ export function ThemeButton() {
   const handleClick = () => {
     if (!mounted || !theme) return
 
+    // Set manual override flag to disable auto-theme
+    localStorage.setItem('manual-theme-override', 'true')
+
     // Toggle between light and dark theme types
     const nextTheme = getNextThemeByType(theme)
     setTheme(nextTheme.id)
   }
 
   const handleThemeSelect = (themeId: string) => {
+    // Set manual override flag to disable auto-theme
+    localStorage.setItem('manual-theme-override', 'true')
+
     setTheme(themeId)
     setShowDropdown(false)
   }
