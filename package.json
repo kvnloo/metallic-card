@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
     "dev": "next dev",
+    "build": "next build",
+    "build:analyze": "ANALYZE=true next build",
+    "start": "next start",
     "lint": "next lint",
-    "start": "next start"
+    "test:performance": "node scripts/performance-test.js"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
@@ -21,6 +23,7 @@
     "tw-animate-css": "latest"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^16.0.3",
     "@tailwindcss/postcss": "^4.1.9",
     "@types/node": "^22",
     "@types/react": "^19",
