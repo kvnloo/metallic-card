@@ -71,6 +71,20 @@ export default function Home() {
       ariaLabel: "Visit GitHub profile",
     },
     {
+      type: "social",
+      label: "Portfolio",
+      value: "https://kvnloo.github.io/portfolio/",
+      icon: "globe",
+      ariaLabel: "Visit portfolio website",
+    },
+    {
+      type: "social",
+      label: "Resume",
+      value: "/ai-eng.pdf",
+      icon: "file-text",
+      ariaLabel: "View resume PDF",
+    },
+    {
       type: "phone",
       label: "Phone",
       value: "6306992872",

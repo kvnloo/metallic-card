@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useState, useRef, useEffect, useMemo } from "react"
-import { Linkedin, Github, Phone, Mail, MapPin, Palette, type LucideIcon } from "lucide-react"
+import { Linkedin, Github, Phone, Mail, MapPin, Palette, Globe, FileText, type LucideIcon } from "lucide-react"
 import { throttleRAF, getPerformanceSettings } from "@/lib/performance-utils"
 
 export interface ContactLink {
@@ -21,6 +21,8 @@ const iconMap: Record<string, LucideIcon> = {
   mail: Mail,
   "map-pin": MapPin,
   behance: Palette, // Lucide doesn't have Behance, using Palette as creative portfolio icon
+  globe: Globe,
+  "file-text": FileText,
 }
 
 export interface BusinessCardProps {
