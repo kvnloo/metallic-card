@@ -8,6 +8,15 @@ const withBundleAnalyzer = bundleAnalyzer({
 const nextConfig = {
   experimental: {
     optimizeCss: false,
+    // Enable Turbopack for faster builds (Next.js 15 feature)
+    turbo: {
+      rules: {
+        '*.svg': {
+          loaders: ['@svgr/webpack'],
+          as: '*.js',
+        },
+      },
+    },
   },
   eslint: {
     ignoreDuringBuilds: true,
@@ -18,14 +27,19 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+
   // Enable compression for production
   compress: true,
 
-  // Optimize production output
-  swcMinify: true,
+  // SWC minification is enabled by default in Next.js 15
+  // No need to specify swcMinify: true
 
   // Enable tree shaking and dead code elimination
   productionBrowserSourceMaps: false,
+
+  // Optimize output
+  poweredByHeader: false, // Remove X-Powered-By header for security
+  reactStrictMode: true,  // Enable strict mode for better debugging
 
   // Optimize bundles
   webpack: (config, { isServer }) => {
@@ -35,6 +49,7 @@ const nextConfig = {
         ...config.optimization,
         usedExports: true,
         sideEffects: false,
+        minimize: true,
       }
     }
     return config
