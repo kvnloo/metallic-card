@@ -58,17 +58,10 @@ export default function Home() {
     },
     {
       type: "social",
-      label: "Behance",
-      value: "https://behance.net/kevinsrajan",
-      icon: "behance",
-      ariaLabel: "Visit Behance portfolio",
-    },
-    {
-      type: "social",
-      label: "GitHub",
-      value: "https://github.com/kvnloo",
-      icon: "github",
-      ariaLabel: "Visit GitHub profile",
+      label: "Resume",
+      value: "/ai-eng.pdf",
+      icon: "file-text",
+      ariaLabel: "View resume PDF",
     },
     {
       type: "social",
@@ -79,10 +72,17 @@ export default function Home() {
     },
     {
       type: "social",
-      label: "Resume",
-      value: "/ai-eng.pdf",
-      icon: "file-text",
-      ariaLabel: "View resume PDF",
+      label: "GitHub",
+      value: "https://github.com/kvnloo",
+      icon: "github",
+      ariaLabel: "Visit GitHub profile",
+    },
+    {
+      type: "social",
+      label: "Behance",
+      value: "https://behance.net/kevinsrajan",
+      icon: "behance",
+      ariaLabel: "Visit Behance portfolio",
     },
     {
       type: "phone",

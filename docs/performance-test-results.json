@@ -1,0 +1,63 @@
+{
+  "timestamp": "2025-11-15T00:14:09.813Z",
+  "tests": {
+    "buildSize": {
+      "total": "327.41 KB",
+      "routes": 6,
+      "status": "❌"
+    },
+    "codeQuality": {
+      "TypeScript": {
+        "status": "✅",
+        "level": "pass"
+      },
+      "ESLint": {
+        "status": "✅",
+        "level": "pass"
+      }
+    },
+    "mobileOptimizations": {
+      "webkitPrefixes": {
+        "name": "iOS Safari -webkit- prefixes",
+        "status": "✅",
+        "level": "pass"
+      },
+      "translate3d": {
+        "name": "GPU acceleration (translate3d)",
+        "status": "✅",
+        "level": "pass"
+      },
+      "responsiveBlur": {
+        "name": "Responsive blur effects",
+        "status": "❌",
+        "level": "fail"
+      }
+    },
+    "performanceUtils": {
+      "lib/performance-utils.ts": {
+        "status": "✅",
+        "level": "pass"
+      },
+      "lib/platform-detect.ts": {
+        "status": "✅",
+        "level": "pass"
+      }
+    },
+    "assets": {
+      "totalSize": "702.97 KB",
+      "count": 6,
+      "largeAssets": [
+        {
+          "name": "ai-eng.pdf",
+          "size": "693.47 KB"
+        }
+      ],
+      "status": "⚠️"
+    }
+  },
+  "summary": {
+    "passed": 6,
+    "failed": 2,
+    "warnings": 1
+  }
+}
