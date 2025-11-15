@@ -151,7 +151,7 @@ body {
   min-height: 200vh;
 }
 
-/* Restored v12 single centered container layout */
+/* Restored v12 single centered container layout - optimized for mobile */
 .portfolio-container {
   display: flex;
   align-items: center;
@@ -162,6 +162,18 @@ body {
   perspective-origin: center center;
   position: relative;
   transform-origin: center center;
+  /* Add CSS containment for better performance */
+  contain: layout style;
+  /* Force GPU acceleration */
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* Reduce perspective on mobile for less intensive 3D calculations */
+@media (max-width: 768px) {
+  .portfolio-container {
+    perspective: 1000px;
+  }
 }
 
 /* Updated portfolio container for scroll sections */
@@ -200,6 +212,9 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  /* Force hardware acceleration on iOS */
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 
 .section-text {
@@ -223,15 +238,22 @@ body {
 
 /* 3D card wrapper for tilt effect */
 .card-3d-wrapper {
+  /* iOS Safari requires -webkit- prefix for transform-style */
+  -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   cursor: pointer;
-  /* Added backface-visibility for better 3D performance */
+  /* iOS Safari requires -webkit- prefix for backface-visibility */
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  /* Added transform-origin for consistent scaling */
+  /* iOS Safari requires -webkit- prefix for transform-origin */
+  -webkit-transform-origin: center center;
   transform-origin: center center;
+  /* Force hardware acceleration on iOS - CRITICAL */
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 
-/* Card container */
+/* Card container - optimized for mobile performance */
 .card-container {
   padding: 2px;
   border-radius: 24px;
@@ -241,9 +263,22 @@ body {
   box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.8),
     0 30px 60px -30px color-mix(in srgb, var(--electric-border-color) 30%, transparent),
     0 0 80px color-mix(in srgb, var(--electric-border-color) 10%, transparent);
+  /* iOS Safari requires -webkit- prefix for transition */
+  -webkit-transition: box-shadow 0.3s ease;
   transition: box-shadow 0.3s ease;
-  /* Added will-change hint for better performance during scroll */
-  will-change: transform;
+  /* Force hardware acceleration on iOS - CRITICAL */
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  /* Add CSS containment for better layer isolation */
+  contain: layout style paint;
+}
+
+/* Reduce shadow complexity on mobile */
+@media (max-width: 768px) {
+  .card-container {
+    box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.6),
+      0 15px 30px -15px color-mix(in srgb, var(--electric-border-color) 20%, transparent);
+  }
 }
 
 /* Main container */
@@ -275,10 +310,24 @@ body {
   border: 2px solid var(--electric-border-color);
   margin-top: -4px;
   margin-left: -4px;
-  filter: url(#turbulent-displace);
+  /* Filter is conditionally applied via JS for mobile performance */
+  /* Force hardware acceleration on iOS - CRITICAL for performance */
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  /* Use GPU compositing */
+  will-change: auto;
 }
 
-/* Glow effects */
+/* Apply filter only on desktop (when SVG is rendered) */
+@media (min-width: 769px) {
+  .main-card {
+    /* iOS Safari requires -webkit- prefix for filter */
+    -webkit-filter: url(#turbulent-displace);
+    filter: url(#turbulent-displace);
+  }
+}
+
+/* Glow effects - optimized for mobile */
 .glow-layer-1 {
   border: 2px solid color-mix(in srgb, var(--electric-border-color) 60%, transparent);
   border-radius: 24px;
@@ -289,7 +338,9 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  filter: blur(1px);
+  /* Force hardware acceleration on iOS */
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 
 .glow-layer-2 {
@@ -302,10 +353,40 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  filter: blur(4px);
+  /* Force hardware acceleration on iOS */
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 
-/* Overlay effects */
+/* Apply blur filters only on desktop for performance */
+@media (min-width: 769px) {
+  .glow-layer-1 {
+    /* iOS Safari requires -webkit- prefix for filter */
+    -webkit-filter: blur(1px);
+    filter: blur(1px);
+  }
+
+  .glow-layer-2 {
+    /* iOS Safari requires -webkit- prefix for filter */
+    -webkit-filter: blur(4px);
+    filter: blur(4px);
+  }
+}
+
+/* Lighter blur on tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  .glow-layer-1 {
+    -webkit-filter: blur(0.5px);
+    filter: blur(0.5px);
+  }
+
+  .glow-layer-2 {
+    -webkit-filter: blur(2px);
+    filter: blur(2px);
+  }
+}
+
+/* Overlay effects - optimized for mobile performance */
 .overlay-1 {
   position: absolute;
   width: 100%;
@@ -317,11 +398,14 @@ body {
   border-radius: 24px;
   opacity: 1;
   mix-blend-mode: overlay;
-  transform: scale(1.1);
-  filter: blur(16px);
+  /* iOS Safari requires -webkit- prefix for transform */
+  -webkit-transform: scale(1.1) translate3d(0, 0, 0);
+  transform: scale(1.1) translate3d(0, 0, 0);
   background: linear-gradient(-30deg, var(--silver-bright), transparent 30%, transparent 70%, var(--silver-bright));
   /* Added pointer-events: none to prevent blocking clicks */
   pointer-events: none;
+  /* Add CSS containment for better layer management */
+  contain: layout style paint;
 }
 
 .overlay-2 {
@@ -335,14 +419,36 @@ body {
   border-radius: 24px;
   opacity: 0.5;
   mix-blend-mode: overlay;
-  transform: scale(1.1);
-  filter: blur(16px);
+  /* iOS Safari requires -webkit- prefix for transform */
+  -webkit-transform: scale(1.1) translate3d(0, 0, 0);
+  transform: scale(1.1) translate3d(0, 0, 0);
   background: linear-gradient(-30deg, var(--silver-bright), transparent 30%, transparent 70%, var(--silver-bright));
   /* Added pointer-events: none to prevent blocking clicks */
   pointer-events: none;
+  /* Add CSS containment for better layer management */
+  contain: layout style paint;
 }
 
-/* Background glow */
+/* Apply expensive blur only on desktop */
+@media (min-width: 769px) {
+  .overlay-1,
+  .overlay-2 {
+    /* iOS Safari requires -webkit- prefix for filter */
+    -webkit-filter: blur(16px);
+    filter: blur(16px);
+  }
+}
+
+/* Lighter blur on tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  .overlay-1,
+  .overlay-2 {
+    -webkit-filter: blur(8px);
+    filter: blur(8px);
+  }
+}
+
+/* Background glow - optimized for mobile */
 .background-glow {
   position: absolute;
   width: 100%;
@@ -352,13 +458,45 @@ body {
   right: 0;
   bottom: 0;
   border-radius: 24px;
-  filter: blur(32px);
-  transform: scale(1.1);
+  /* iOS Safari requires -webkit- prefix for transform */
+  -webkit-transform: scale(1.1) translate3d(0, 0, 0);
+  transform: scale(1.1) translate3d(0, 0, 0);
   /* Opacity controlled via inline styles based on hover state */
   z-index: -1;
   background: linear-gradient(-30deg, var(--silver-bright), transparent, var(--electric-border-color));
   /* Added pointer-events: none to prevent blocking clicks */
   pointer-events: none;
+  /* Add CSS containment for better layer management */
+  contain: layout style paint;
+}
+
+/* Apply expensive blur only on desktop */
+@media (min-width: 769px) {
+  .background-glow {
+    /* iOS Safari requires -webkit- prefix for filter */
+    -webkit-filter: blur(32px);
+    filter: blur(32px);
+  }
+}
+
+/* Lighter blur on tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  .background-glow {
+    -webkit-filter: blur(16px);
+    filter: blur(16px);
+  }
+}
+
+/* Mouse spotlight - hidden on mobile/touch devices */
+.mouse-spotlight {
+  /* Hide on touch devices to avoid performance overhead */
+  pointer-events: none;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .mouse-spotlight {
+    display: none !important;
+  }
 }
 
 /* Content container */
@@ -375,6 +513,8 @@ body {
   /* Added z-index to ensure content is above overlay effects */
   z-index: 20;
   pointer-events: none;
+  /* Add CSS containment for better performance */
+  contain: layout style;
 }
 
 /* Content sections */
@@ -427,12 +567,17 @@ body {
     color-mix(in srgb, var(--foreground) 4%, transparent);
   /* Color is set inline via style attribute with CSS variables */
   /* Enhanced transition for smooth lift and highlight animation */
+  /* iOS Safari requires -webkit- prefix for transition */
+  -webkit-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   text-decoration: none;
   cursor: pointer;
   pointer-events: auto;
   z-index: 1;
+  /* Force hardware acceleration on iOS */
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 
 /* Ensure SVG icons inherit color from parent */
@@ -442,7 +587,9 @@ body {
 
 /* Added hover animation with lift and highlight effect */
 .contact-button:hover {
-  transform: translateY(-4px);
+  /* iOS Safari requires -webkit- prefix for transform */
+  -webkit-transform: translateY(-4px) translate3d(0, 0, 0);
+  transform: translateY(-4px) translate3d(0, 0, 0);
   background: radial-gradient(47.2% 50% at 50.39% 88.37%,
       color-mix(in srgb, var(--foreground) 20%, transparent) 0%,
       color-mix(in srgb, var(--foreground) 5%, transparent) 100%),
@@ -451,12 +598,18 @@ body {
     0 4px 8px color-mix(in srgb, var(--foreground) 10%, transparent),
     0 0 20px color-mix(in srgb, var(--electric-border-color) 15%, transparent);
   /* Brighten the icon color on hover */
+  /* iOS Safari requires -webkit- prefix for filter */
+  -webkit-filter: brightness(1.2);
   filter: brightness(1.2);
 }
 
 /* Added active state for button press feedback */
 .contact-button:active {
-  transform: translateY(-2px);
+  /* iOS Safari requires -webkit- prefix for transform */
+  -webkit-transform: translateY(-2px) translate3d(0, 0, 0);
+  transform: translateY(-2px) translate3d(0, 0, 0);
+  /* iOS Safari requires -webkit- prefix for transition */
+  -webkit-transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
   transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
