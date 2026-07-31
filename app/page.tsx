@@ -85,13 +85,6 @@ export default function Home() {
       ariaLabel: "Visit Behance portfolio",
     },
     {
-      type: "phone",
-      label: "Phone",
-      value: "6306992872",
-      icon: "phone",
-      ariaLabel: "Call phone number",
-    },
-    {
       type: "email",
       label: "Email",
       value: "kevinsrajan@gmail.com",
