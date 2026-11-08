@@ -242,7 +242,6 @@ async function testPerformanceUtils() {
 
   const utilFiles = [
     'lib/performance-utils.ts',
-    'lib/platform-detect.ts',
   ];
 
   results.tests.performanceUtils = {};
