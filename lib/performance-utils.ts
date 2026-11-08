@@ -30,7 +30,7 @@ export function throttleRAF<T extends (...args: any[]) => void>(callback: T): T 
 /**
  * Detect if device is mobile/low-end
  */
-export function isMobileDevice(): boolean {
+function isMobileDevice(): boolean {
   if (typeof window === 'undefined') return false
 
   // Check for touch support and screen size
@@ -43,7 +43,7 @@ export function isMobileDevice(): boolean {
 /**
  * Check if device prefers reduced motion
  */
-export function prefersReducedMotion(): boolean {
+function prefersReducedMotion(): boolean {
   if (typeof window === 'undefined') return false
 
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches

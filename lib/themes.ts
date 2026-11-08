@@ -44,7 +44,7 @@ export interface Theme {
 
 // Tokyo Night (Dark) - Official VSCode theme
 // Source: https://github.com/tokyo-night/tokyo-night-vscode-theme
-export const tokyoNight: Theme = {
+const tokyoNight: Theme = {
   id: 'tokyo-night',
   name: 'Tokyo Night',
   type: 'dark',
@@ -79,7 +79,7 @@ export const tokyoNight: Theme = {
 
 // Nord (Cool, muted colors)
 // Source: https://www.nordtheme.com/docs/colors-and-palettes/
-export const nord: Theme = {
+const nord: Theme = {
   id: 'nord',
   name: 'Nord',
   type: 'dark',
@@ -114,7 +114,7 @@ export const nord: Theme = {
 
 // Catppuccin Mocha (Pastel, soft colors)
 // Source: https://catppuccin.com/palette/
-export const catppuccin: Theme = {
+const catppuccin: Theme = {
   id: 'catppuccin',
   name: 'Catppuccin',
   type: 'dark',
@@ -149,7 +149,7 @@ export const catppuccin: Theme = {
 
 // One Dark (Atom-inspired)
 // Source: https://github.com/atom/one-dark-syntax
-export const oneDark: Theme = {
+const oneDark: Theme = {
   id: 'one-dark',
   name: 'One Dark',
   type: 'dark',
@@ -183,7 +183,7 @@ export const oneDark: Theme = {
 }
 
 // Light theme (Default light)
-export const light: Theme = {
+const light: Theme = {
   id: 'light',
   name: 'Light',
   type: 'light',
@@ -217,7 +217,7 @@ export const light: Theme = {
 }
 
 // Dark theme (Default dark - Silver metallic)
-export const dark: Theme = {
+const dark: Theme = {
   id: 'dark',
   name: 'Dark',
   type: 'dark',
@@ -266,7 +266,7 @@ export const getTheme = (id: string): Theme | undefined => {
 }
 
 // Helper to get default theme
-export const getDefaultTheme = (): Theme => {
+const getDefaultTheme = (): Theme => {
   return dark
 }
 

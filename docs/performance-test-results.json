@@ -1,8 +1,8 @@
 {
-  "timestamp": "2025-11-15T00:23:13.977Z",
+  "timestamp": "2026-11-07T23:22:46.726Z",
   "tests": {
     "buildSize": {
-      "total": "327.41 KB",
+      "total": "329.60 KB",
       "routes": 6,
       "status": "❌"
     },
@@ -35,10 +35,6 @@
     },
     "performanceUtils": {
       "lib/performance-utils.ts": {
-        "status": "✅",
-        "level": "pass"
-      },
-      "lib/platform-detect.ts": {
         "status": "✅",
         "level": "pass"
       }
